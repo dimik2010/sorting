@@ -1,5 +1,7 @@
 package ru.mail.polis.structures;
 
+import java.util.Arrays;
+
 /**
  * Created by Nechaev Mikhail
  * Since 12/11/2017.
@@ -8,15 +10,20 @@ public class SimpleInteger implements Numerical<SimpleInteger> {
 
     private static final int DIGIT_COUNT = 10;
 
-//    private final todo data;
-//    private final int length;
+    private final int[] data;
+    private final int length;
 
     public SimpleInteger(Integer data) throws IllegalArgumentException {
-        if (data == null) {
-            throw new IllegalArgumentException("Source must be not null");
-        }
-//        this.data = todo
-//        this.length = todo
+      if (data == null) {
+        throw new IllegalArgumentException("Source must be not null");
+      }
+      this.length = String.valueOf(data).length();
+      this.data = new int[length];
+      int copyData = data;
+      for (int i = length-1; i >=0; i--) {
+        this.data[i] = copyData % 10;
+        copyData /= 10;
+      }
     }
 
     @Override
@@ -26,8 +33,7 @@ public class SimpleInteger implements Numerical<SimpleInteger> {
         } else if (index >= getDigitCount()) {
             return 0;
         } else {
-            //todo
-            return 0;
+            return data[index];
         }
     }
 
@@ -38,12 +44,20 @@ public class SimpleInteger implements Numerical<SimpleInteger> {
 
     @Override
     public int getDigitCount() {
-        //todo
-        return 0;
+        return length;
     }
 
     @Override
     public int compareTo(SimpleInteger anotherSimpleInteger) {
         return 0;
     }
+
+  @Override
+  public String toString() {
+      StringBuilder stringBuilder = new StringBuilder();
+    for (int i = data.length-1; i >= 0 ; i--) {
+      stringBuilder.append(data[i]);
+    }
+    return stringBuilder.toString();
+  }
 }

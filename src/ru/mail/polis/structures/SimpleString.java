@@ -10,7 +10,7 @@ public class SimpleString implements Numerical<SimpleString> {
 
     private static final Pattern SIMPLE_STRING = Pattern.compile("^[a-z]+$");
     private static final int DIGIT_COUNT = 'z' - 'a' + 1;
-    private static final int MIN_DIGIT_VALUE = 'a' - 1;
+    private static final int MIN_DIGIT_VALUE = 'a'; //array starts with 0
 
     private final String data;
     private final int length;
@@ -51,5 +51,17 @@ public class SimpleString implements Numerical<SimpleString> {
     @Override
     public int compareTo(SimpleString anotherSimpleString) {
         return data.compareTo(anotherSimpleString.data);
+    }
+
+    @Override
+    public String toString() {
+        return data;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      if (obj == this)
+        return true;
+      return obj instanceof SimpleString && data.equals(((SimpleString) obj).data);
     }
 }

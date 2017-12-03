@@ -8,7 +8,6 @@ package ru.mail.polis.structures;
 // (числа одной длины / строки с одинаковым количеством символов)
 //Для этих объектов сравнивается время между сортировками extends AbstractSortOnComparisons и LSDSort
 public interface Numerical<T> extends Comparable<T> {
-
     /**
      * @param index - порядковый номер разряда
      * @return Значение index разряда
@@ -25,4 +24,5 @@ public interface Numerical<T> extends Comparable<T> {
      * @return Количество разрядов
      */
     int getDigitCount();
+
 }

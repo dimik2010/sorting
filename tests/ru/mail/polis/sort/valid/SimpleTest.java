@@ -10,10 +10,7 @@ import org.junit.Test;
 import ru.mail.polis.sort.CountingSort;
 import ru.mail.polis.sort.LSDSort;
 import ru.mail.polis.sort.SimpleSortOnComparisons;
-import ru.mail.polis.structures.IntKeyObject;
-import ru.mail.polis.structures.IntKeyStringValueObject;
-import ru.mail.polis.structures.Numerical;
-import ru.mail.polis.structures.SimpleInteger;
+import ru.mail.polis.structures.*;
 
 /**
  * Created by Nechaev Mikhail
@@ -23,16 +20,19 @@ public class SimpleTest {
 
     @Test
     public void test01() throws IOException {
-        SimpleSortOnComparisons<String> simpleSort = new SimpleSortOnComparisons<>();
-        String[] array = new String[]{"abc", "bcd", "cde", "acd", "zxy", "bba"};
-        simpleSort.sort(array);
-        Assert.assertArrayEquals(new String[]{"abc", "acd", "bba", "bcd", "cde", "zxy"}, array);
+        LSDSort<SimpleString> sorter = new LSDSort<>();
+        SimpleString[] array = new SimpleString[]{new SimpleString("abc"), new SimpleString("bcd"), new SimpleString("cde"),
+                new SimpleString("acd"), new SimpleString("zxy"), new SimpleString("bba")};
+        sorter.sort(array);
+
+        Assert.assertArrayEquals(new SimpleString[]{new SimpleString("abc"), new SimpleString("acd"), new SimpleString("bba"),
+                new SimpleString("bcd"), new SimpleString("cde"), new SimpleString("zxy")}, array);
     }
 
     @Test
     public void testLSD() throws IOException {
-        LSDSort<Numerical> lsdSort = new LSDSort<>();
-        Numerical[] array = new Numerical[]{new SimpleInteger(10), new SimpleInteger(20), new SimpleInteger(30)};
+        LSDSort<SimpleInteger> lsdSort = new LSDSort<>();
+        SimpleInteger[] array = new SimpleInteger[]{new SimpleInteger(10), new SimpleInteger(20), new SimpleInteger(30)};
         lsdSort.sort(array);
     }
 
@@ -40,8 +40,7 @@ public class SimpleTest {
     @SuppressWarnings("unchecked")
     public void testCountingSort() throws IOException {
         CountingSort<IntKeyObject<String>> countingSort = new CountingSort<>();
-        List<IntKeyObject<String>> list = Arrays.asList(new IntKeyStringValueObject(1, "abc"), new IntKeyStringValueObject(2, "bcd"));
-        IntKeyObject<String>[] array = (IntKeyObject<String>[]) list.toArray();
+        IntKeyObject<String>[] array = new IntKeyStringValueObject[] {new IntKeyStringValueObject(1, "abc"), new IntKeyStringValueObject(2, "bcd")};
         countingSort.sort(array);
     }
 }
