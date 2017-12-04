@@ -2,6 +2,7 @@ package ru.mail.polis.sort;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class QuickSortWithTriplePartition<T extends Comparable<T>> extends AbstractSortOnComparisons<T> {
 
@@ -14,23 +15,34 @@ public class QuickSortWithTriplePartition<T extends Comparable<T>> extends Abstr
     int i = left;
     SortUtils.swap(array, indexOfPivot, right);
     int j = right - 1;
-    int eqP = right;
+    int eqJ = right;
+    int eqL = left-1;
     while (i < j) {
       while (lesser(array[i], valOfPivot)) i++;
-      while (greater(array[j], valOfPivot)) j--;
+      while (greater(array[j], valOfPivot) && (i<j) ) j--;
       if (i < j) {
-        SortUtils.swap(array, i++, j--);
-        if (array[i].compareTo(valOfPivot) == 0)
-          SortUtils.swap(array, i, --eqP);
-        if (array[j].compareTo(valOfPivot) == 0)
-          SortUtils.swap(array, j, --eqP);
+        SortUtils.swap(array, i, j);
+        if (array[j].compareTo(valOfPivot) == 0) {
+          SortUtils.swap(array, j, --eqJ);
+        }
+        if (array[i].compareTo(valOfPivot) == 0) {
+          SortUtils.swap(array, i, ++eqL);
+        }
+        i++;
+        j--;
       }
     }
-    int startPosOfEquals = j;
-    for (int k = eqP; k <= right; k++) {
-      SortUtils.swap(array, j++, k);
+    SortUtils.swap(array, right, i);
+    j = i-1;
+    i++;
+    for (int k = left; k <= eqL; k++, j--) {
+      SortUtils.swap(array, k, j);
     }
-    int finishPosOfEquals = j - 1;
+    int startPosOfEquals = j+1;
+    for (int k = right-1; k >= eqJ ; k--, i++) {
+      SortUtils.swap(array, i, k);
+    }
+    int finishPosOfEquals = i-1;
     return new int[]{startPosOfEquals, finishPosOfEquals};
   }
 
@@ -40,8 +52,8 @@ public class QuickSortWithTriplePartition<T extends Comparable<T>> extends Abstr
       return;
     }
     int[] positions = partition(array, left, right);
-    doSort(array, left, positions[0]);
-    doSort(array, positions[1], right);
+    doSort(array, left, positions[0]-1);
+    doSort(array, positions[1]+1, right);
   }
 
   @Override
@@ -51,10 +63,14 @@ public class QuickSortWithTriplePartition<T extends Comparable<T>> extends Abstr
 
   public static void main(String[] args) {
     QuickSortWithTriplePartition<Integer> sorter = new QuickSortWithTriplePartition<>();
-    Integer[] array = new Integer[]{0};
-//    Integer[] array = Arrays.stream(SortUtils.generateArray(10)).boxed().toArray(Integer[]::new);
-    sorter.sort(array);
-    System.out.println(SortUtils.isArraySorted(array));
-    System.out.println(Arrays.toString(array));
+//    Integer[] array = new Integer[]{0};
+    int[] data = SortUtils.generateArray(100);
+    for (int j = 10; j < 100; j++) {
+      data[j] = 100;
+    }
+    Integer[] dataInteger = IntStream.of(data).boxed().toArray(Integer[]::new);
+    sorter.sort(dataInteger);
+    System.out.println(SortUtils.isArraySorted(dataInteger));
+    System.out.println(Arrays.toString(dataInteger));
   }
 }

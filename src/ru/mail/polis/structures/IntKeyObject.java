@@ -6,7 +6,7 @@ package ru.mail.polis.structures;
  */
 //Объекты со значениями ключей в узком диапазоне
 //Для этих объектов сравнивается время между сортировками extends AbstractSortOnComparisons и CountingSort
-public interface IntKeyObject<V> extends Comparable<IntKeyObject> {
+public interface IntKeyObject<V> extends Comparable<IntKeyObject<V>> {
 
     int getKey();
 
