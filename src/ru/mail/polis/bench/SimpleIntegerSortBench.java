@@ -29,7 +29,7 @@ public class SimpleIntegerSortBench {
 
   @Setup(value = Level.Invocation)
   public void setUpInvocation() {
-    a = SortUtils.generateSimpleIntegerArray(1000);
+    a = SortUtils.generateSimpleIntegerArray(1000, 3);
   }
 
   @Benchmark

@@ -56,7 +56,7 @@ public class SimpleInteger implements Numerical<SimpleInteger> {
   @Override
   public String toString() {
     StringBuilder stringBuilder = new StringBuilder();
-    for (int i = data.length - 1; i >= 0; i--) {
+    for (int i = 0; i < data.length; i--) {
       stringBuilder.append(data[i]);
     }
     return stringBuilder.toString();

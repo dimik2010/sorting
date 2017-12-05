@@ -20,16 +20,16 @@ import java.util.concurrent.TimeUnit;
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
 public class IntKeyObjectSortBench {
-  //todo: классы extends AbstractSortOnComparisons и CountingSort
   private IntKeyObject<String>[] a;
   private CountingSort<IntKeyObject<String>> countingSort = new CountingSort<>();
   private AbstractSortOnComparisons<IntKeyObject<String>> quickSort = new QuickSort<>();
   private AbstractSortOnComparisons<IntKeyObject<String>> heapSort = new HeapSort<>();
+  private AbstractSortOnComparisons<IntKeyObject<String>> quickSortWithTriplePartition = new QuickSortWithTriplePartition<>();
 
 
   @Setup(value = Level.Invocation)
   public void setUpInvocation() {
-    a = SortUtils.generateIntKeyStringValueObjectArray(1000);
+    a = SortUtils.generateIntKeyStringValueObjectArray(1000, 1000000);
   }
 
   @Benchmark
@@ -45,6 +45,11 @@ public class IntKeyObjectSortBench {
   @Benchmark
   public void measureHeapSort(Blackhole bh) {
     heapSort.sort(a);
+    bh.consume(a);
+  }
+  @Benchmark
+  public void measureQuickSortWithTriplePartition(Blackhole bh) {
+    quickSortWithTriplePartition.sort(a);
     bh.consume(a);
   }
 

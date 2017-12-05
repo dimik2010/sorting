@@ -1,0 +1,46 @@
+#Sorting array of ints with 100 pairs of equals elements:
+AverageTimeBench.measureBubbleSort                    avgt    5  39,944 ± 5,338  us/op
+AverageTimeBench.measureHeapSort                      avgt    5  27,002 ± 3,699  us/op
+AverageTimeBench.measureMergeSort                     avgt    5  21,854 ± 0,806  us/op
+AverageTimeBench.measureQuickSort                     avgt    5  14,244 ± 2,232  us/op
+AverageTimeBench.measureQuickSortWithTriplePartition  avgt    5  12,518 ± 2,692  us/op
+
+
+#Counting sort
+##Sorting array of ints with 1000 elements with keys from 0 to 149:
+IntKeyObjectSortBench.measureCountingSort                  avgt    5   12,284 ±  5,833  us/op
+IntKeyObjectSortBench.measureHeapSort                      avgt    5  207,702 ± 17,900  us/op
+IntKeyObjectSortBench.measureQuickSort                     avgt    5   96,897 ±  8,589  us/op
+IntKeyObjectSortBench.measureQuickSortWithTriplePartition  avgt    5   78,111 ±  6,526  us/op
+##Sorting array of ints with 1000 elements with keys from 0 to 100000:
+IntKeyObjectSortBench.measureCountingSort                  avgt    5  135,133 ± 53,599  us/op
+IntKeyObjectSortBench.measureHeapSort                      avgt    5  218,219 ± 12,367  us/op
+IntKeyObjectSortBench.measureQuickSort                     avgt    5  105,742 ±  3,512  us/op
+IntKeyObjectSortBench.measureQuickSortWithTriplePartition  avgt    5  117,998 ± 7,865   us/op
+##Sorting array of ints with 1000 elements with keys from 0 to 1000000:
+IntKeyObjectSortBench.measureCountingSort                  avgt    5  1443,753 ± 273,423  us/op
+IntKeyObjectSortBench.measureHeapSort                      avgt    5   217,594 ±  14,329  us/op
+IntKeyObjectSortBench.measureQuickSort                     avgt    5   111,379 ±   4,316  us/op
+IntKeyObjectSortBench.measureQuickSortWithTriplePartition  avgt    5   114,684 ±   3,568  us/op
+
+#LSD:
+##Strings:
+###Sorting array of strings with 1000 elements with string length = 50:
+SimpleStringSortBench.measureHeapSort                      avgt    5   352,917 ±   4,578  us/op
+SimpleStringSortBench.measureLSDSort                       avgt    5  1102,664 ± 129,496  us/op
+SimpleStringSortBench.measureQuickSort                     avgt    5   271,536 ±  41,006  us/op
+SimpleStringSortBench.measureQuickSortWithTriplePartition  avgt    5   284,643 ±  10,621  us/op
+###Sorting array of strings with 1000 elements with string length = 5:
+SimpleStringSortBench.measureHeapSort                      avgt    5  327,888 ± 17,481  us/op
+SimpleStringSortBench.measureLSDSort                       avgt    5   93,637 ±  4,384  us/op
+SimpleStringSortBench.measureQuickSort                     avgt    5  231,196 ±  2,052  us/op
+SimpleStringSortBench.measureQuickSortWithTriplePartition  avgt    5  254,005 ±  3,210  us/op
+##Integers:
+###Sorting array of ints with 1000 elements with num of digits = 5:
+SimpleIntegerSortBench.measureHeapSort   avgt    5  199,508 ± 2,221  us/op
+SimpleIntegerSortBench.measureLSDSort    avgt    5   62,288 ± 4,407  us/op
+SimpleIntegerSortBench.measureQuickSort  avgt    5  112,910 ± 3,893  us/op
+###Sorting array of ints with 1000 elements with num of digits = 9:
+SimpleIntegerSortBench.measureHeapSort   avgt    5  227,585 ± 32,951  us/op
+SimpleIntegerSortBench.measureLSDSort    avgt    5  121,476 ± 43,780  us/op
+SimpleIntegerSortBench.measureQuickSort  avgt    5  112,101 ±  5,873  us/op

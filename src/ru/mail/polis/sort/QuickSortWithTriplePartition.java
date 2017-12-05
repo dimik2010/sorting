@@ -22,10 +22,10 @@ public class QuickSortWithTriplePartition<T extends Comparable<T>> extends Abstr
       while (greater(array[j], valOfPivot) && (i<j) ) j--;
       if (i < j) {
         SortUtils.swap(array, i, j);
-        if (array[j].compareTo(valOfPivot) == 0) {
+        if (compare(array[j], valOfPivot) == 0) {
           SortUtils.swap(array, j, --eqJ);
         }
-        if (array[i].compareTo(valOfPivot) == 0) {
+        if (compare(array[i], valOfPivot) == 0) {
           SortUtils.swap(array, i, ++eqL);
         }
         i++;
@@ -64,10 +64,10 @@ public class QuickSortWithTriplePartition<T extends Comparable<T>> extends Abstr
   public static void main(String[] args) {
     QuickSortWithTriplePartition<Integer> sorter = new QuickSortWithTriplePartition<>();
 //    Integer[] array = new Integer[]{0};
-    int[] data = SortUtils.generateArray(100);
-    for (int j = 10; j < 100; j++) {
-      data[j] = 100;
-    }
+    int[] data = SortUtils.generateArray(1000);
+//    for (int j = 10; j < 100; j++) {
+//      data[j] = 100;
+//    }
     Integer[] dataInteger = IntStream.of(data).boxed().toArray(Integer[]::new);
     sorter.sort(dataInteger);
     System.out.println(SortUtils.isArraySorted(dataInteger));

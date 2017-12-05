@@ -23,11 +23,12 @@ public class SimpleStringSortBench {
   private LSDSort<SimpleString> lsdSort = new LSDSort<>();
   private AbstractSortOnComparisons<SimpleString> quickSort = new QuickSort<>();
   private AbstractSortOnComparisons<SimpleString> heapSort = new HeapSort<>();
+  private AbstractSortOnComparisons<SimpleString> quickSortWithTriplePartition = new QuickSortWithTriplePartition<>();
 
 
   @Setup(value = Level.Invocation)
   public void setUpInvocation() {
-    a = SortUtils.generateSimpleStringArray(1000);
+    a = SortUtils.generateSimpleStringArray(1000, 5);
   }
 
   @Benchmark
@@ -45,6 +46,12 @@ public class SimpleStringSortBench {
   @Benchmark
   public void measureHeapSort(Blackhole bh) {
     heapSort.sort(a);
+    bh.consume(a);
+  }
+
+  @Benchmark
+  public void measureQuickSortWithTriplePartition(Blackhole bh) {
+    quickSortWithTriplePartition.sort(a);
     bh.consume(a);
   }
 

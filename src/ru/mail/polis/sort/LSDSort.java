@@ -4,6 +4,7 @@ import ru.mail.polis.structures.Numerical;
 import ru.mail.polis.structures.SimpleInteger;
 import ru.mail.polis.structures.SimpleString;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -44,11 +45,9 @@ public class LSDSort<T extends Numerical<T>> implements Sort<T> {
   }
 
   public static void main(String[] args) {
-    LSDSort<SimpleString> sorter = new LSDSort<>();
-    SimpleString[] array = new SimpleString[]{new SimpleString("abc"), new SimpleString("bcd"), new SimpleString("cde"),
-            new SimpleString("acd"), new SimpleString("zxy"), new SimpleString("bba")};
-    sorter.sort(array);
-    System.out.println(new SimpleString("abc").equals(new SimpleString("abc")));
-    System.out.println(Arrays.toString(array));
+    LSDSort<SimpleInteger> sorter = new LSDSort<>();
+    SimpleInteger[] arr = SortUtils.generateSimpleIntegerArray(100, 100);
+    sorter.sort(arr);
+    System.out.println(Arrays.toString(arr));
   }
 }

@@ -22,24 +22,22 @@ public class SortUtils {
     a[j] = x;
   }
 
-  public static SimpleInteger[] generateSimpleIntegerArray(int n) {
+  public static SimpleInteger[] generateSimpleIntegerArray(int n, int numOfDigits) {
     SimpleInteger[] res = new SimpleInteger[n];
     Random rand = new Random();
+    int bound = (int) Math.pow(10, numOfDigits-1);
     for (int i = 0; i < n; i++) {
-      res[i] = new SimpleInteger(rand.nextInt(10000) + 10000);
-    }
-    for (int i = res.length - 1; i > 0; i--) {
-      int j = rand.nextInt(i + 1);
-      SortUtils.swap(res, i, j);
+      int data = rand.nextInt(bound) + bound;
+      res[i] = new SimpleInteger(rand.nextInt(bound) + bound);
     }
     return res;
   }
 
-  public static SimpleString[] generateSimpleStringArray(int n) {
-    SimpleString[] arr = new SimpleString[2*n];
+  public static SimpleString[] generateSimpleStringArray(int n, int lengthOfWords) {
+    SimpleString[] arr = new SimpleString[n];
     for (int i = 0; i < arr.length; i++) {
       StringBuilder stringBuilder = new StringBuilder();
-      for (int j = 0; j < 5; j++) {
+      for (int j = 0; j < lengthOfWords; j++) {
         stringBuilder.append(String.valueOf((char)(r.nextInt('z' - 'a' + 1) + 'a')));
       }
       arr[i] = new SimpleString(stringBuilder.toString());
@@ -47,12 +45,13 @@ public class SortUtils {
     return arr;
   }
 
-  public static IntKeyStringValueObject[] generateIntKeyStringValueObjectArray(int n) {
-    IntKeyStringValueObject[] arr = new IntKeyStringValueObject[2*n];
-    int[] nums = generateArray(n);
-    for (int i = 0; i < arr.length; i++) {
-      arr[i] = new IntKeyStringValueObject(nums[i], String.valueOf((char)(r.nextInt('z' - 'a' + 1) + 'a')));
+  public static IntKeyStringValueObject[] generateIntKeyStringValueObjectArray(int n, int boundOfKeys) {
+    IntKeyStringValueObject[] arr = new IntKeyStringValueObject[n];
+    for (int i = 0; i < arr.length-1; i++) {
+      arr[i] = new IntKeyStringValueObject(r.nextInt(boundOfKeys+1), String.valueOf((char)(r.nextInt('z' - 'a' + 1) + 'a')));
     }
+    //make sure that one key is the bound
+    arr[arr.length-1] = new IntKeyStringValueObject(boundOfKeys, String.valueOf((char)(r.nextInt('z' - 'a' + 1) + 'a')));
     return arr;
 
   }
